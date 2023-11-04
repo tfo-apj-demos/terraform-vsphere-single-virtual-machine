@@ -7,10 +7,10 @@ module "vm" {
   memory            = local.sizes[var.size].memory
   cluster           = local.environments[var.environment]
   datacenter        = local.sites[var.site]
-  primary_datastore = local.storage_profiles[var.storage_profile]
+  primary_datastore = local.storage_profile[var.storage_profile]
   resource_pool     = local.tiers[var.tier]
+  tag_ids           = local.tag_ids
   folder_path       = var.folder_path
-
 
   networks = {
     "seg-general" = "dhcp"
