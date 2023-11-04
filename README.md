@@ -18,7 +18,7 @@ This module provisions virtual machines on a vSphere cluster using the [terrafor
 
 | Name     | Version |
 |----------|---------|
-| vsphere  | >= 1.0  |
+| vsphere  |  2.5.1  |
 
 ## Resources
 
