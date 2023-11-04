@@ -66,10 +66,6 @@ module "vm" {
 |----------|---------|
 | vsphere  | >= 1.0  |
 
-## Modules
-
-No Modules.
-
 ## Resources
 
 This module creates the following resources:
@@ -89,15 +85,3 @@ This module creates the following resources:
 | Name | Description |
 |------|-------------|
 ... (add your outputs here, if any) ...
-
-## License
-
-Specify the license under which this module is provided.
-
-## Authors
-
-This module is maintained by [Your Name or Organization].
-
-## Acknowledgements
-
-(Any acknowledgements or credits to third-party content or contributors.)
