@@ -16,7 +16,7 @@ locals {
   // Site to datacenter mappings
   sites = {
     "sydney"    = "Datacenter"
-    "canberra"    = "Datacenter"
+    "canberra"  = "Datacenter"
     "melbourne" = "Datacenter"
   }
 

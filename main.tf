@@ -7,7 +7,9 @@ module "vm" {
   cluster           = local.environments[var.environment]
   datacenter        = local.sites[var.site]
   primary_datastore = local.storage_profiles[var.storage_profile]
+  resource_pool     = local.tiers[var.tier]
   folder_path       = var.folder_path
+
 
   networks = {
     "seg-general" = "dhcp"
