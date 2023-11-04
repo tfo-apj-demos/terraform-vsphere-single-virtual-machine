@@ -60,7 +60,7 @@ variable "storage_profile" {
 }
 
 variable "tier" {
-  description = "The tier of the resources to be used for the VM. This will determine the resource pool."
+  description = "The resource tier for the VM (e.g., gold, silver, bronze)"
   type        = string
   validation {
     condition     = contains(["gold", "silver", "bronze"], var.tier)
