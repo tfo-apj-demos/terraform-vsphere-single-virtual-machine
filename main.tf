@@ -2,6 +2,7 @@ module "vm" {
   source = "github.com/tfo-apj-demos/terraform-vsphere-virtual-machine"
 
   template          = var.vsphere_template_name
+  hostname          = var.hostname
   num_cpus          = local.sizes[var.size].cpu
   memory            = local.sizes[var.size].memory
   cluster           = local.environments[var.environment]
