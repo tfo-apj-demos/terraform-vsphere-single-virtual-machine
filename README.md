@@ -9,6 +9,23 @@
 
 This module provisions virtual machines on a vSphere cluster using the [terraform-vsphere-virtual-machine](https://github.com/tfo-apj-demos/terraform-vsphere-virtual-machine) module while abstracting the complexity with predefined "t-shirt sizes" for CPU and memory, and mappings for cluster and datastore selection based on environment and storage profile.
 
+## Requirements
+
+- Terraform 0.12 and newer.
+- vSphere provider.
+
+## Providers
+
+| Name     | Version |
+|----------|---------|
+| vsphere  | >= 1.0  |
+
+## Resources
+
+This module creates the following resources:
+
+- vSphere Virtual Machine
+
 ## Usage
 
 Example usage for provisioning a 'small' size VM in a 'dev' environment located at the 'sydney' site with a 'performance' storage profile:
@@ -50,38 +67,3 @@ module "vm" {
 | `folder_path`           | The path to the VM folder.                            | `string` | `"Datacenter/vm/demo workloads"`  | No       |
 | `custom_text`           | Custom text to be rendered in userdata.               | `string` | `"some text to be rendered"`      | No       |
 | `vsphere_template_name` | The vSphere template to use for creating the VM.      | `string` | `"base-ubuntu-2204-20231103114728"` | No    |
-
-## Outputs
-
-> **Note:** Outputs should be documented here with a description of each.
-
-## Requirements
-
-- Terraform 0.12 and newer.
-- vSphere provider.
-
-## Providers
-
-| Name     | Version |
-|----------|---------|
-| vsphere  | >= 1.0  |
-
-## Resources
-
-This module creates the following resources:
-
-- vSphere Virtual Machine
-
-## Inputs and Outputs
-
-### Inputs
-
-| Name                    | Description                                           | Type     | Default                           | Required |
-|-------------------------|-------------------------------------------------------|----------|-----------------------------------|:--------:|
-... (add your variables here, following the same structure) ...
-
-### Outputs
-
-| Name | Description |
-|------|-------------|
-... (add your outputs here, if any) ...
