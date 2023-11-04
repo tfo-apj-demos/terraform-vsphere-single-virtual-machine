@@ -1,17 +1,20 @@
 variable "vsphere_user" {
   description = "vSphere username"
   type        = string
+  default = ""
 }
 
 variable "vsphere_password" {
   description = "vSphere password"
   type        = string
   sensitive   = true
+  default = ""
 }
 
 variable "vsphere_server" {
   description = "vSphere server address"
   type        = string
+  default = ""
 }
 
 variable "hostname" {
