@@ -9,8 +9,16 @@ module "vm" {
   datacenter        = local.sites[var.site]
   primary_datastore = local.storage_profile[var.storage_profile]
   resource_pool     = local.tiers[var.tier]
-  tag_ids           = local.tag_ids
-  folder_path       = var.folder_path
+  tags = {
+    environment      = var.environment
+    site             = var.site
+    backup_policy    = var.backup_policy
+    tier             = var.tier
+    storage_profile  = var.storage_profile
+    security_profile = var.security_profile
+  }
+  folder_path = var.folder_path
+  disk_0_size = 60
 
   networks = {
     "seg-general" = "dhcp"
@@ -25,8 +33,4 @@ module "vm" {
     dhcp     = true
     hostname = var.hostname
   })
-
-  vsphere_user     = var.vsphere_user
-  vsphere_password = var.vsphere_password
-  vsphere_server   = var.vsphere_server
 }
