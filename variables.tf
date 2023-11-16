@@ -1,22 +1,3 @@
-variable "vsphere_user" {
-  description = "vSphere username"
-  type        = string
-  default     = ""
-}
-
-variable "vsphere_password" {
-  description = "vSphere password"
-  type        = string
-  sensitive   = true
-  default     = ""
-}
-
-variable "vsphere_server" {
-  description = "vSphere server address"
-  type        = string
-  default     = ""
-}
-
 variable "hostname" {
   description = "The hostname of the VM being provisioned."
   type        = string
@@ -71,8 +52,6 @@ variable "tier" {
   }
 }
 
-
-
 variable "security_profile" {
   description = "The security profile for the VM (e.g., web-server, db-server)"
   type        = string
@@ -94,7 +73,7 @@ variable "backup_policy" {
 variable "folder_path" {
   description = "The path to the VM folder where the virtual machine will be created."
   type        = string
-  default     = "Datacenter/vm/demo workloads"
+  default     = "demo workloads"
 }
 
 variable "custom_text" {
@@ -106,5 +85,5 @@ variable "custom_text" {
 variable "vsphere_template_name" {
   description = "The name of the vSphere template to use for VM creation."
   type        = string
-  default     = "base-ubuntu-2204-20231103114728"
+  default     = "base-ubuntu-2204-20231115112042"
 }
