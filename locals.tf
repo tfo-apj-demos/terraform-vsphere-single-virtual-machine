@@ -36,15 +36,15 @@ locals {
 
   // Security profiles to security group mappings
   security_profile = {
-    "web-server" = "Web_Server_Security_Group"
-    "db-server"  = "DB_Server_Security_Group"
+    "web-server" = "web-server"
+    "db-server"  = "db-server"
   }
 
   // Backup policies to specific configurations
   backup_policy = {
-    "daily"   = "Daily_Backup_Policy"
-    "weekly"  = "Weekly_Backup_Policy"
-    "monthly" = "Monthly_Backup_Policy"
+    "daily"   = "daily"
+    "weekly"  = "weekly"
+    "monthly" = "monthly"
 
   }
 
