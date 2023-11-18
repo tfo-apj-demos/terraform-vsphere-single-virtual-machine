@@ -1,3 +1,12 @@
+variable "os_type" {
+  description = "The type of operating system to be provisioned"
+  type        = string
+  validation {
+    condition     = var.os_type == "windows" || var.os_type == "linux"
+    error_message = "The os_type must be either 'windows' or 'linux'."
+  }
+}
+
 variable "hostname" {
   description = "The hostname of the VM being provisioned. If left blank a hostname will be generated."
   type        = string
