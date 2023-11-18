@@ -20,21 +20,18 @@ This Terraform module simplifies the provisioning of virtual machines in a vSphe
 Example usage for provisioning a 'small' size VM in a 'dev' environment located at the 'sydney' site with a 'performance' storage profile:
 
 ```hcl
-module "vm" {
-  source = "github.com/tfo-apj-demos/terraform-vsphere-virtual-machine"
+module "single-virtual-machine" {
+  source  = "app.terraform.io/tfo-apj-demos/single-virtual-machine/vsphere"
+  version = "1.0.9"
 
-  vsphere_template_name = "base-ubuntu-2204-20231103114728"
-  hostname              = "example-vm"
-  size                  = "small"
-  environment           = "dev"
-  site                  = "sydney"
-  storage_profile       = "performance"
-  tier                  = "gold"
-  folder_path           = "Datacenter/vm/demo workloads"
-  custom_text           = "This is an example."
-  vsphere_user          = "your-vsphere-username"
-  vsphere_password      = "your-vsphere-password"
-  vsphere_server        = "your-vsphere-server-address"
+  backup_policy    = "daily"
+  environment      = "dev"
+  hostname         = "vm-01"
+  security_profile = "web-server"
+  site             = "sydney"
+  size             = "medium"
+  storage_profile  = "standard"
+  tier             = "gold"
 }
 ```
 
