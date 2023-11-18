@@ -1,6 +1,7 @@
 variable "hostname" {
   description = "The hostname of the VM being provisioned. If left blank a hostname will be generated."
   type        = string
+  default     = ""
 }
 
 variable "size" {
