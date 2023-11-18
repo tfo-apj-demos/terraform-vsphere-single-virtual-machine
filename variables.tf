@@ -78,9 +78,3 @@ variable "custom_text" {
   type        = string
   default     = "some text to be rendered"
 }
-
-variable "vsphere_template_name" {
-  description = "The name of the vSphere template to use for VM creation."
-  type        = string
-  default     = "base-ubuntu-2204-20231115112042"
-}

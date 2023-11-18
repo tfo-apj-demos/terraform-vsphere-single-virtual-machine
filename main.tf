@@ -1,7 +1,15 @@
+data "hcp_packer_image" "base-ubuntu-2204" {
+  bucket_name    = "base-ubuntu-2204"
+  channel        = "latest"
+  cloud_provider = "vsphere"
+  region         = "Datacenter"
+}
+
+
 module "vm" {
   source = "github.com/tfo-apj-demos/terraform-vsphere-virtual-machine"
 
-  template          = var.vsphere_template_name
+  template          = data.hcp_packer_image.base-ubuntu-2204.cloud_image_id
   hostname          = var.hostname
   num_cpus          = local.sizes[var.size].cpu
   memory            = local.sizes[var.size].memory
