@@ -3,7 +3,8 @@
 
 
 ## Quick Start
-Provision a virtual machine in your private cloud environment with ease using predefined "t-shirt sizes". [See full example](#quick-example)
+Provision a virtual machine in your private cloud environment with ease using predefined "t-shirt sizes".
+For practical examples of how to use this module, please refer to the [examples](./example) directory in this repository.
 
 ## About This Module
 This Terraform module simplifies the provisioning of virtual machines in a vSphere cluster. It utilizes predefined configurations for CPU and memory sizes, and automatically selects the appropriate cluster and datastore based on the environment and storage profile.
