@@ -1,10 +1,6 @@
 variable "hostname" {
-  description = "The hostname of the VM being provisioned."
+  description = "The hostname of the VM being provisioned. If left blank a hostname will be generated."
   type        = string
-  validation {
-    condition     = length(trimspace(var.hostname)) > 0
-    error_message = "The hostname must not be empty and should not contain any leading or trailing whitespace."
-  }
 }
 
 variable "size" {
