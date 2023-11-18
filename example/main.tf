@@ -1,10 +1,9 @@
 module "single-virtual-machine" {
   source  = "app.terraform.io/tfo-apj-demos/single-virtual-machine/vsphere"
-  version = "1.0.9"
+  version = "1.1.2"
 
   backup_policy    = "daily"
   environment      = "dev"
-  hostname         = "vm-01"
   security_profile = "web-server"
   site             = "sydney"
   size             = "medium"

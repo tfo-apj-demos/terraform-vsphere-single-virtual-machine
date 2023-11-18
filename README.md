@@ -22,11 +22,10 @@ Example usage for provisioning a 'small' size VM in a 'dev' environment located 
 ```hcl
 module "single-virtual-machine" {
   source  = "app.terraform.io/tfo-apj-demos/single-virtual-machine/vsphere"
-  version = "1.0.9"
+  version = "1.1.2"
 
   backup_policy    = "daily"
   environment      = "dev"
-  hostname         = "vm-01"
   security_profile = "web-server"
   site             = "sydney"
   size             = "medium"
@@ -60,7 +59,7 @@ module "single-virtual-machine" {
 - [Contributing to This Module](#contributing)
 
 ## Stay Updated
-- **Current Version**: 1.0.8
+- **Current Version**: 1.1.2
 
 ## Need Help?
 [Contact Us](HashiCorp Solutions Engineering and Architecture)
