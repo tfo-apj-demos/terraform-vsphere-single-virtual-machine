@@ -1,4 +1,4 @@
-# Terraform vSphere Virtual Machine Module
+# Terraform vSphere Virtual Machine Module 
 
 
 
@@ -61,7 +61,7 @@ module "single-virtual-machine" {
 - [Contributing to This Module](#contributing)
 
 ## Stay Updated
-- **Current Version**: 1.1.5
+- **Current Version**: 1.1.7
 
 ## Need Help?
 [Contact Us](HashiCorp Solutions Engineering and Architecture)
