@@ -1,4 +1,7 @@
 locals {
+  // HCP Packer Image Selection
+  cloud_image_id = var.os_type == "windows" ? data.hcp_packer_image.base-windows-2022.cloud_image_id : data.hcp_packer_image.base-ubuntu-2204.cloud_image_id
+  
   // T-shirt size mappings for CPU and memory
   sizes = {
     "small"  = { cpu = 1, memory = 1024 }
@@ -59,7 +62,22 @@ locals {
   ]
 }
 
-# Fetching tag categories
+// Fetching HCP Packer Images
+data "hcp_packer_image" "base-ubuntu-2204" {
+  bucket_name    = "base-ubuntu-2204"
+  channel        = "latest"
+  cloud_provider = "vsphere"
+  region         = "Datacenter"
+}
+
+data "hcp_packer_image" "base-windows-2022" {
+  bucket_name    = "base-windows-2022"
+  channel        = "latest"
+  cloud_provider = "vsphere"
+  region         = "Datacenter"
+}
+
+// Fetching tag categories
 data "vsphere_tag_category" "environment_category" {
   name = "environment"
 }
@@ -102,7 +120,7 @@ data "vsphere_tag" "tier" {
   name        = each.key
 }
 
-# Fetching tags for each category
+// Fetching tags for each category
 data "vsphere_tag" "backup_policy" {
   for_each    = toset(["daily", "weekly", "monthly"])
   category_id = data.vsphere_tag_category.backup_policy.id

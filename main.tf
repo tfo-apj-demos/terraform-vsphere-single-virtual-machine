@@ -1,22 +1,3 @@
-data "hcp_packer_image" "base-ubuntu-2204" {
-  bucket_name    = "base-ubuntu-2204"
-  channel        = "latest"
-  cloud_provider = "vsphere"
-  region         = "Datacenter"
-}
-
-data "hcp_packer_image" "base-windows-2022" {
-  bucket_name    = "base-windows-2022"
-  channel        = "latest"
-  cloud_provider = "vsphere"
-  region         = "Datacenter"
-}
-
-locals {
-  cloud_image_id = var.os_type == "windows" ? data.hcp_packer_image.base-windows-2022.cloud_image_id : data.hcp_packer_image.base-ubuntu-2204.cloud_image_id
-}
-
-
 module "vm" {
   source = "github.com/tfo-apj-demos/terraform-vsphere-virtual-machine"
 
