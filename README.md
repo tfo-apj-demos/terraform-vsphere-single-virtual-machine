@@ -21,7 +21,7 @@ Example usage for provisioning a 'small' size VM in a 'dev' environment located 
 ```hcl
 module "single-virtual-machine" {
   source  = "app.terraform.io/tfo-apj-demos/single-virtual-machine/vsphere"
-  version = "1.1.5"
+  version = "~> 1"
 
   backup_policy    = "daily"
   environment      = "dev"

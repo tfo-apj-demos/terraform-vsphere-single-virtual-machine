@@ -18,7 +18,7 @@ module "single-virtual-machine" {
   site             = "sydney"
   size             = "medium"
   storage_profile  = "standard"
-  tier             = "gold"
+  tier             = "bronze"
 }
 
 output "vm_name" {
