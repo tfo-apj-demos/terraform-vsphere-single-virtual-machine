@@ -1,7 +1,5 @@
 # Terraform vSphere Virtual Machine Module 
 
-
-
 ## Quick Start
 Provision a virtual machine in your private cloud environment with ease using predefined "t-shirt sizes".
 For practical examples of how to use this module, please refer to the [examples](./example) directory in this repository.
