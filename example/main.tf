@@ -1,7 +1,6 @@
 terraform {
   cloud {
     organization = "tfo-apj-demos"
-
     workspaces {
       project = "aaron-dev"
       name = "my-first-vm"
