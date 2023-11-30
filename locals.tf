@@ -52,14 +52,14 @@ locals {
   }
 
   // vSphere Tags to associate with the virtual machine
-  tag_ids = [
+  /*tag_ids = [
     data.vsphere_tag.environment[var.environment].id,
     data.vsphere_tag.site[var.site].id,
     data.vsphere_tag.tier[var.tier].id,
     data.vsphere_tag.backup_policy[var.backup_policy].id,
     data.vsphere_tag.storage_profile[var.storage_profile].id,
     data.vsphere_tag.security_profile[var.security_profile].id,
-  ]
+  ]*/
 }
 
 // Fetching HCP Packer Images
@@ -77,6 +77,7 @@ data "hcp_packer_image" "base-windows-2022" {
   region         = "Datacenter"
 }
 
+/*
 // Fetching tag categories
 data "vsphere_tag_category" "environment_category" {
   name = "environment"
@@ -137,4 +138,4 @@ data "vsphere_tag" "security_profile" {
   for_each    = toset(["web-server", "db-server"])
   category_id = data.vsphere_tag_category.security_profile.id
   name        = each.key
-}
+}*/
