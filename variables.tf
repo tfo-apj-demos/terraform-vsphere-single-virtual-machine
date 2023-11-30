@@ -22,6 +22,10 @@ variable "size" {
   }
 }
 
+variable "disk_0_size" {
+	default = 60
+}
+
 variable "environment" {
   description = "The environment of the VM (e.g., dev, test, prod)"
   type        = string
