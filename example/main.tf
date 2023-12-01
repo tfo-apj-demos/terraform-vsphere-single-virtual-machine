@@ -3,7 +3,7 @@ terraform {
     organization = "tfo-apj-demos"
     workspaces {
       project = "aaron-dev"
-      name = "my-first-vm"
+      name = "my-first-vsphere-vm"
     }
   }
 }
