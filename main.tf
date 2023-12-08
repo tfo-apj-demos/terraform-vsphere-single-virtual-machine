@@ -1,4 +1,4 @@
-module "virtual-machine" {
+module "vm" {
   source  = "app.terraform.io/tfo-apj-demos/virtual-machine/vsphere"
   version = "1.3.4"
 
