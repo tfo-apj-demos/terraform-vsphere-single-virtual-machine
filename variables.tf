@@ -91,3 +91,18 @@ variable "custom_text" {
   type        = string
   default     = "some text to be rendered"
 }
+
+variable "ad_domain" {
+  type    = string
+  default = ""
+}
+
+variable "domain_admin_user" {
+  type    = string
+  default = ""
+}
+
+variable "domain_admin_password" {
+  type    = string
+  default = ""
+}
