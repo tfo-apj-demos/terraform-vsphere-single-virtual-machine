@@ -99,14 +99,17 @@ variable "ad_domain" {
 variable "domain_admin_user" {
   type    = string
   sensitive = true
+  default = ""
 }
 
 variable "domain_admin_password" {
   type    = string
   sensitive = true
+  default = ""
 }
 
 variable "admin_password" {
   type    = string
   sensitive = true
+  default = ""
 }
