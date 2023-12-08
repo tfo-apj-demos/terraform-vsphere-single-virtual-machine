@@ -94,15 +94,12 @@ variable "custom_text" {
 
 variable "ad_domain" {
   type    = string
-  default = ""
 }
 
 variable "domain_admin_user" {
   type    = string
-  default = ""
 }
 
 variable "domain_admin_password" {
   type    = string
-  default = ""
 }
