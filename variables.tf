@@ -98,8 +98,10 @@ variable "ad_domain" {
 
 variable "domain_admin_user" {
   type    = string
+  sensitive = true
 }
 
 variable "domain_admin_password" {
   type    = string
+  sensitive = true
 }
