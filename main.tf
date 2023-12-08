@@ -20,6 +20,7 @@ module "vm" {
   }
   folder_path = var.folder_path
   disk_0_size = var.disk_0_size
+  admin_password = var.admin_password
   ad_domain = var.ad_domain
   domain_admin_user = var.domain_admin_user
   domain_admin_password = var.domain_admin_password
