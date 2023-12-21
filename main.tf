@@ -56,8 +56,8 @@ module "vm" {
 resource "ad_computer" "windows_computer" {
   count = var.os_type == "windows" ? 1 : 0
 
-  name        = var.hostname
-  pre2kname   = var.hostname
+  name        = local.hostname
+  pre2kname   = local.hostname
   container   = "OU=Terraform Managed Computers,DC=hashicorp,DC=local"
   description = "Terraform Managed Windows Computer"
 }
