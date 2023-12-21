@@ -23,7 +23,7 @@ variable "size" {
 }
 
 variable "disk_0_size" {
-	default = 60
+  default = 60
 }
 
 variable "environment" {
@@ -93,23 +93,23 @@ variable "custom_text" {
 }
 
 variable "ad_domain" {
-  type    = string
+  type = string
 }
 
 variable "domain_admin_user" {
-  type    = string
+  type      = string
   sensitive = true
-  default = ""
+  default   = ""
 }
 
 variable "domain_admin_password" {
-  type    = string
+  type      = string
   sensitive = true
-  default = ""
+  default   = ""
 }
 
 variable "admin_password" {
-  type    = string
+  type      = string
   sensitive = true
-  default = ""
+  default   = ""
 }

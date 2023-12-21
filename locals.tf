@@ -1,7 +1,7 @@
 locals {
   // HCP Packer Image Selection
   cloud_image_id = var.os_type == "windows" ? data.hcp_packer_image.base-windows-2022.cloud_image_id : data.hcp_packer_image.base-ubuntu-2204.cloud_image_id
-  
+
   // T-shirt size mappings for CPU and memory
   sizes = {
     "small"  = { cpu = 1, memory = 1024 }

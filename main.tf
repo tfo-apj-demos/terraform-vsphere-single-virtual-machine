@@ -1,9 +1,21 @@
+resource "random_pet" "this" {
+  length = 1
+}
+
+resource "random_integer" "this" {
+  min = 1000
+  max = 9999
+}
+
+locals {
+  hostname = var.hostname != "" ? var.hostname : "${random_pet.this.id}-${random_integer.this.result}"
+}
 module "vm" {
   source  = "app.terraform.io/tfo-apj-demos/virtual-machine/vsphere"
   version = "1.3.4"
 
   template          = local.cloud_image_id
-  hostname          = var.hostname
+  hostname          = local.hostname
   num_cpus          = local.sizes[var.size].cpu
   memory            = local.sizes[var.size].memory
   cluster           = local.environments[var.environment]
@@ -18,11 +30,11 @@ module "vm" {
     storage_profile  = var.storage_profile
     security_profile = var.security_profile
   }
-  folder_path = var.folder_path
-  disk_0_size = var.disk_0_size
-  admin_password = var.admin_password
-  ad_domain = var.ad_domain
-  domain_admin_user = var.domain_admin_user
+  folder_path           = var.folder_path
+  disk_0_size           = var.disk_0_size
+  admin_password        = var.admin_password
+  ad_domain             = var.ad_domain
+  domain_admin_user     = var.domain_admin_user
   domain_admin_password = var.domain_admin_password
 
   networks = {
@@ -44,8 +56,8 @@ module "vm" {
 resource "ad_computer" "windows_computer" {
   count = var.os_type == "windows" ? 1 : 0
 
-  name      = var.hostname
-  pre2kname = var.hostname
-  container = "OU=Terraform Managed Computers,DC=hashicorp,DC=local"
+  name        = var.hostname
+  pre2kname   = var.hostname
+  container   = "OU=Terraform Managed Computers,DC=hashicorp,DC=local"
   description = "Terraform Managed Windows Computer"
 }
