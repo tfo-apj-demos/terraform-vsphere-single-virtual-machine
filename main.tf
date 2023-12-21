@@ -39,3 +39,13 @@ module "vm" {
     hostname = var.hostname
   })
 }
+
+# Conditional creation of AD computer object
+resource "ad_computer" "windows_computer" {
+  count = var.os_type == "windows" ? 1 : 0
+
+  name      = var.hostname
+  pre2kname = var.hostname
+  container = "OU=Terraform Managed Computers,DC=hashicorp,DC=local"
+  description = "Terraform Managed Windows Computer"
+}
