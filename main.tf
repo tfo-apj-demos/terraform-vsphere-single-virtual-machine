@@ -61,3 +61,14 @@ resource "ad_computer" "windows_computer" {
   container   = "OU=Terraform Managed Computers,DC=hashicorp,DC=local"
   description = "Terraform Managed Windows Computer"
 }
+
+module "domain-name-system-management" {
+  source  = "app.terraform.io/tfo-apj-demos/domain-name-system-management/dns"
+  version = "~> 1.0"
+  a_records = [
+    {
+      name      = "local.hostname"
+      addresses = [module.vm.ip_address]
+    }
+  ]
+}
