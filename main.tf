@@ -67,7 +67,7 @@ module "domain-name-system-management" {
   version = "~> 1.0"
   a_records = [
     {
-      name      = "local.hostname"
+      name      = local.hostname
       addresses = [module.vm.ip_address]
     }
   ]
