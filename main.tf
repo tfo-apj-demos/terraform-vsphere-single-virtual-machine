@@ -65,6 +65,7 @@ resource "ad_computer" "windows_computer" {
 module "domain-name-system-management" {
   source  = "app.terraform.io/tfo-apj-demos/domain-name-system-management/dns"
   version = "~> 1.0"
+
   a_records = [
     {
       name      = local.hostname
