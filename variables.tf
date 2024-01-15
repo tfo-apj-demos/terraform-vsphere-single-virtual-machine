@@ -54,11 +54,11 @@ variable "storage_profile" {
 }
 
 variable "tier" {
-  description = "The resource tier for the VM (e.g., gold, silver, bronze)"
+  description = "The resource tier for the VM (e.g., gold, silver, bronze, management)"
   type        = string
   validation {
-    condition     = contains(["gold", "silver", "bronze"], var.tier)
-    error_message = "Tier must be 'gold', 'silver', or 'bronze'."
+    condition     = contains(["gold", "silver", "bronze", "management"], var.tier)
+    error_message = "Tier must be 'gold', 'silver', 'gold' or 'management'."
   }
 }
 

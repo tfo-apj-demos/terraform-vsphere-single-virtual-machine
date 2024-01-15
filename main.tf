@@ -1,15 +1,3 @@
-resource "random_pet" "this" {
-  length = 1
-}
-
-resource "random_integer" "this" {
-  min = 1000
-  max = 9999
-}
-
-locals {
-  hostname = var.hostname != "" ? var.hostname : "${random_pet.this.id}-${random_integer.this.result}"
-}
 module "vm" {
   source  = "app.terraform.io/tfo-apj-demos/virtual-machine/vsphere"
   version = "1.3.4"
