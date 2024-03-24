@@ -83,7 +83,7 @@ variable "backup_policy" {
 variable "folder_path" {
   description = "The path to the VM folder where the virtual machine will be created."
   type        = string
-  default     = "demo workloads"
+  default     = "Demo Workloads"
 }
 
 variable "custom_text" {
