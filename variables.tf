@@ -66,8 +66,8 @@ variable "security_profile" {
   description = "The security profile for the VM (e.g., web-server, db-server)"
   type        = string
   validation {
-    condition     = contains(["web-server", "db-server"], var.security_profile)
-    error_message = "Security profile must be one of 'web-server' or 'db-server'."
+    condition     = contains(["web-server", "db-server", "app-server"], var.security_profile)
+    error_message = "Security profile must be one of 'web-server', 'app-server' or 'db-server'."
   }
 }
 
