@@ -1,6 +1,6 @@
 module "vm" {
   source  = "app.terraform.io/tfo-apj-demos/virtual-machine/vsphere"
-  version = "1.3.4"
+  version = "1.4.0"
 
   template          = local.cloud_image_id
   hostname          = local.hostname
