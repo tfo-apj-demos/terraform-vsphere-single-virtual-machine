@@ -17,8 +17,8 @@ variable "size" {
   description = "T-shirt size for the VM (e.g., small, medium, large)"
   type        = string
   validation {
-    condition     = contains(["small", "medium", "large"], var.size)
-    error_message = "Size must be one of 'small', 'medium', or 'large'."
+    condition     = contains(["small", "medium", "large", "xlarge", "2xlarge", "4xlarge"], var.size)
+    error_message = "Size must be one of 'small', 'medium', or 'large', 'xlarge', '2xlarge' or '4xlarge'."
   }
 }
 
