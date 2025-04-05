@@ -33,6 +33,9 @@ locals {
     "small"  = { cpu = 1, memory = 1024 }
     "medium" = { cpu = 2, memory = 2048 }
     "large"  = { cpu = 4, memory = 4096 }
+    "xlarge" = { cpu = 8, memory = 8192 }
+    "2xlarge" = { cpu = 16, memory = 16384 }
+    "4xlarge" = { cpu = 32, memory = 32768 }
   }
 
   // Environment to cluster mappings
