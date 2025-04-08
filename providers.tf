@@ -8,9 +8,9 @@ terraform {
       source  = "hashicorp/hcp"
       version = "0.77.0"
     }
-    ad = {
-      source  = "hashicorp/ad"
-      version = "0.4.4"
-    }
+    # ad = {
+    #   source  = "hashicorp/ad"
+    #   version = "0.4.4"
+    # }
   }
 }
