@@ -8,22 +8,35 @@ resource "random_integer" "this" {
 }
 
 // Fetching HCP Packer Images
-data "hcp_packer_image" "base-ubuntu-2204" {
-  bucket_name    = "base-ubuntu-2204"
-  channel        = "latest"
-  cloud_provider = "vsphere"
-  region         = "Datacenter"
+data "hcp_packer_artifact" "base-ubuntu-2204" {
+  bucket_name   = "base-ubuntu-2204"
+  channel_name  = "latest"
+  platform      = "vsphere"
+  region        = "Datacenter"
 }
 
-data "hcp_packer_image" "base-windows-2022" {
-  bucket_name    = "base-windows-2022"
-  channel        = "latest"
-  cloud_provider = "vsphere"
-  region         = "Datacenter"
+data "hcp_packer_artifact" "base-windows-2022" {
+  bucket_name   = "base-windows-2022"
+  channel_name  = "latest"
+  platform      = "vsphere"
+  region        = "Datacenter"
 }
+
+data "hcp_packer_artifact" "base-rhel-9" {
+  bucket_name   = "base-rhel-9"
+  channel_name  = "latest"
+  platform      = "vsphere"
+  region        = "Datacenter"
+}
+
 locals {
   // HCP Packer Image Selection
-  cloud_image_id = var.os_type == "windows" ? data.hcp_packer_image.base-windows-2022.cloud_image_id : data.hcp_packer_image.base-ubuntu-2204.cloud_image_id
+  cloud_image_id = (
+    var.os_type == "windows" ? data.hcp_packer_artifact.base-windows-2022.external_identifier :
+    var.os_type == "linux" && var.linux_distribution == "ubuntu" ? data.hcp_packer_artifact.base-ubuntu-2204.external_identifier :
+    var.os_type == "linux" && var.linux_distribution == "rhel" ? data.hcp_packer_artifact.base-rhel-9.external_identifier :
+    null
+  )
 
   // Generate Hostname prior to AD Computer Object creation
   hostname = var.hostname != "" ? var.hostname : "${random_pet.this.id}-${random_integer.this.result}"
