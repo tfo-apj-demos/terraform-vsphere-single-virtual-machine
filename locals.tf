@@ -39,7 +39,7 @@ locals {
   )
 
   // Generate Hostname prior to AD Computer Object creation
-  hostname = var.hostname != "" ? var.hostname : "${random_pet.this.id}-${random_integer.this.result}"
+  #hostname = var.hostname != "" ? var.hostname : "${random_pet.this.id}-${random_integer.this.result}"
 
   // T-shirt size mappings for CPU and memory
   sizes = {
