@@ -1,11 +1,11 @@
-resource "random_pet" "this" {
-  length = 1
-}
+# resource "random_pet" "this" {
+#   length = 1
+# }
 
-resource "random_integer" "this" {
-  min = 1000
-  max = 9999
-}
+# resource "random_integer" "this" {
+#   min = 1000
+#   max = 9999
+# }
 
 // Fetching HCP Packer Images
 data "hcp_packer_artifact" "base-ubuntu-2204" {
