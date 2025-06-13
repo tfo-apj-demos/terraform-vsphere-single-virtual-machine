@@ -8,34 +8,42 @@
 # }
 
 // Fetching HCP Packer Images
-data "hcp_packer_artifact" "base-ubuntu-2204" {
+data "hcp_packer_artifact" "base_ubuntu_2204" {
   bucket_name   = "base-ubuntu-2204"
   channel_name  = "latest"
   platform      = "vsphere"
   region        = "Datacenter"
 }
 
-data "hcp_packer_artifact" "base-windows-2022" {
+data "hcp_packer_artifact" "base_windows_2022" {
   bucket_name   = "base-windows-2022"
   channel_name  = "latest"
   platform      = "vsphere"
   region        = "Datacenter"
 }
 
-data "hcp_packer_artifact" "base-rhel-9" {
+data "hcp_packer_artifact" "base_rhel_9" {
   bucket_name   = "base-rhel-9"
   channel_name  = "latest"
   platform      = "vsphere"
   region        = "Datacenter"
 }
 
+#mssql-windows-2022
+data "hcp_packer_artifact" "mssql_windows_2022" {
+  bucket_name   = "mssql-windows-2022"
+  channel_name  = "latest"
+  platform      = "vsphere"
+  region        = "Datacenter"
+}
+
 locals {
-  // HCP Packer Image Selection
-  cloud_image_id = (
-    var.os_type == "windows" ? data.hcp_packer_artifact.base-windows-2022.external_identifier :
-    var.os_type == "linux" && var.linux_distribution == "ubuntu" ? data.hcp_packer_artifact.base-ubuntu-2204.external_identifier :
-    var.os_type == "linux" && var.linux_distribution == "rhel" ? data.hcp_packer_artifact.base-rhel-9.external_identifier :
-    null
+  // HCP Packer Image Selection based on the data source types
+  cloud_image_id = ( 
+    var.os_type == "windows" ? data.hcp_packer_artifact.base_windows_2022.id :
+    var.os_type == "linux" && var.linux_distribution == "ubuntu" ? data.hcp_packer_artifact.base_ubuntu_2204.id :
+    var.os_type == "linux" && var.linux_distribution == "rhel" ? data.hcp_packer_artifact.base_rhel_9.id :
+    var.os_type == "mssql" ? data.hcp_packer_artifact.mssql_windows_2022.id : null
   )
 
   // Generate Hostname prior to AD Computer Object creation
