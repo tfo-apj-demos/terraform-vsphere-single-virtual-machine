@@ -29,7 +29,6 @@ data "hcp_packer_artifact" "base_rhel_9" {
   region        = "Datacenter"
 }
 
-#mssql-windows-2022
 data "hcp_packer_artifact" "mssql_windows_2022" {
   bucket_name   = "mssql-windows-2022"
   channel_name  = "latest"
@@ -40,10 +39,10 @@ data "hcp_packer_artifact" "mssql_windows_2022" {
 locals {
   // HCP Packer Image Selection based on the data source types
   cloud_image_id = ( 
-    var.os_type == "windows" ? data.hcp_packer_artifact.base_windows_2022.id :
-    var.os_type == "linux" && var.linux_distribution == "ubuntu" ? data.hcp_packer_artifact.base_ubuntu_2204.id :
-    var.os_type == "linux" && var.linux_distribution == "rhel" ? data.hcp_packer_artifact.base_rhel_9.id :
-    var.os_type == "mssql" ? data.hcp_packer_artifact.mssql_windows_2022.id : null
+    var.os_type == "windows" ? data.hcp_packer_artifact.base_windows_2022.external_identifier :
+    var.os_type == "linux" && var.linux_distribution == "ubuntu" ? data.hcp_packer_artifact.base_ubuntu_2204.external_identifier :
+    var.os_type == "linux" && var.linux_distribution == "rhel" ? data.hcp_packer_artifact.base_rhel_9.external_identifier :
+    var.os_type == "mssql" ? data.hcp_packer_artifact.mssql_windows_2022.external_identifier : null
   )
 
   // Generate Hostname prior to AD Computer Object creation
