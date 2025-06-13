@@ -38,14 +38,14 @@ module "vm" {
 }
 
 # # Conditional creation of AD computer object
-# resource "ad_computer" "windows_computer" {
-#   count = var.os_type == "windows" ? 1 : 0
+resource "ad_computer" "windows_computer" {
+  count = var.os_type == "windows" ? 1 : 0
 
-#   name        = local.hostname
-#   pre2kname   = local.hostname
-#   container   = "OU=Terraform Managed Computers,DC=hashicorp,DC=local"
-#   description = "Terraform Managed Windows Computer"
-# }
+  name        = var.hostname
+  pre2kname   = var.hostname
+  container   = "OU=Terraform Managed Computers,DC=hashicorp,DC=local"
+  description = "Terraform Managed Windows Computer"
+}
 
 module "domain-name-system-management" {
   source  = "app.terraform.io/tfo-apj-demos/domain-name-system-management/dns"
