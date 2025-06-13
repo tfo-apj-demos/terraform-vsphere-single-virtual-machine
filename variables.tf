@@ -2,8 +2,8 @@ variable "os_type" {
   description = "The type of operating system to be provisioned"
   type        = string
   validation {
-    condition     = var.os_type == "windows" || var.os_type == "linux"
-    error_message = "The os_type must be either 'windows' or 'linux'."
+    condition     = var.os_type == "windows" || var.os_type == "linux" || var.os_type == "mssql"
+    error_message = "The os_type must be either 'windows' or 'linux' or 'mssql'."
   }
 }
 
