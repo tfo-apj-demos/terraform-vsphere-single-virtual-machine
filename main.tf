@@ -1,16 +1,16 @@
 module "vm" {
   source  = "app.terraform.io/tfo-apj-demos/virtual-machine/vsphere"
-  version = "1.5.2"
+  version = "1.6.0"
 
   hostname          = var.hostname
 
-  template          = local.cloud_image_id
-  num_cpus          = local.sizes[var.size].cpu
-  memory            = local.sizes[var.size].memory
-  cluster           = local.environments[var.environment]
-  datacenter        = local.sites[var.site]
-  primary_datastore = local.storage_profile[var.storage_profile]
-  resource_pool     = local.tiers[var.tier]
+  template = local.cloud_image_id
+  num_cpus = local.sizes[var.size].cpu
+  memory               = local.sizes[var.size].memory
+  cluster              = local.environments[var.environment]
+  datacenter           = local.sites[var.site]
+  primary_datastore    = local.storage_profile[var.storage_profile]
+  resource_pool        = local.tiers[var.tier]
 
   tags = {
     environment      = var.environment
@@ -20,7 +20,7 @@ module "vm" {
     storage_profile  = var.storage_profile
     security_profile = var.security_profile
   }
-  
+
   folder_path           = var.folder_path
   disk_0_size           = var.disk_0_size
   admin_password        = var.admin_password
