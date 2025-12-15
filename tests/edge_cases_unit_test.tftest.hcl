@@ -15,6 +15,32 @@ variables {
   ad_domain        = "hashicorp.local"
 }
 
+# Mock providers for unit testing (no real infrastructure needed)
+mock_provider "vsphere" {
+  mock_data "vsphere_virtual_machine" {
+    defaults = {
+      scsi_type            = "pvscsi"
+      guest_id             = "ubuntu64Guest"
+      firmware             = "efi"
+      num_cpus             = 2
+      memory               = 2048
+      network_interface_types = ["vmxnet3"]
+      disks = [
+        {
+          size             = 32
+          eagerly_scrub    = false
+          thin_provisioned = true
+        }
+      ]
+    }
+  }
+}
+
+mock_provider "hcp" {}
+mock_provider "ad" {}
+mock_provider "dns" {}
+mock_provider "random" {}
+
 # ============================================================================
 # Hostname Tests
 # ============================================================================
@@ -167,12 +193,12 @@ run "test_minimum_disk_size" {
 
   variables {
     hostname    = "test-min-disk-vm"
-    disk_0_size = 10  # Very small disk
+    disk_0_size = 32  # Minimum allowed size (must match or exceed template)
   }
 
   assert {
-    condition     = var.disk_0_size == 10
-    error_message = "Minimum disk size should be accepted"
+    condition     = var.disk_0_size == 32
+    error_message = "Minimum disk size (32GB) should be accepted"
   }
 }
 
@@ -399,15 +425,15 @@ run "test_child_module_attributes" {
     environment = "test"
   }
 
-  # Verify module source
+  # Verify VM module outputs are available
   assert {
-    condition     = can(regex("app.terraform.io/tfo-apj-demos/virtual-machine/vsphere", module.vm.source))
-    error_message = "Should use correct child module source"
+    condition     = module.vm.virtual_machine_name == "test-module-vm"
+    error_message = "VM module should be configured with correct hostname"
   }
 
-  # Verify DNS module is configured
+  # Verify DNS module is configured (only a_record_ids is exposed)
   assert {
-    condition     = module.domain-name-system-management != null
+    condition     = module.domain-name-system-management.a_record_ids != null
     error_message = "DNS module should be configured"
   }
 }
