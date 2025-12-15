@@ -23,13 +23,15 @@ terraform {
   }
 }
 
-# vSphere provider configuration
-# Uses environment variables: VSPHERE_USER, VSPHERE_PASSWORD, VSPHERE_SERVER
-provider "vsphere" {
-  allow_unverified_ssl = true
-}
-
-# HCP provider configuration
-provider "hcp" {
-  project_id = "11eb56d6-0f95-3a99-a33c-0242ac110007"
-}
+# Provider configurations removed - they must be defined in the calling module
+# This allows the module to be used with count, for_each, and depends_on
+#
+# The calling module should define providers like this:
+#
+# provider "vsphere" {
+#   allow_unverified_ssl = true
+# }
+#
+# provider "hcp" {
+#   project_id = "your-project-id"
+# }
