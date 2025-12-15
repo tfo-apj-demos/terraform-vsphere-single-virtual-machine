@@ -17,3 +17,13 @@ output "ip_address" {
   description = "The default IP address of the virtual machine."
   value       = module.vm.ip_address
 }
+
+output "template_metadata" {
+  description = "Metadata about the VM template being used (HCP Packer or fallback)."
+  value       = local.cloud_image_metadata
+}
+
+output "template_name" {
+  description = "The name of the VM template being used."
+  value       = local.cloud_image_id
+}

@@ -123,3 +123,45 @@ variable "admin_password" {
   sensitive = true
   default   = ""
 }
+
+# HCP Packer Configuration
+variable "hcp_packer_channel" {
+  description = <<-EOT
+    HCP Packer channel to use for template selection.
+
+    Options:
+    - 'latest': Always use the most recent build (default, but risky if templates are cleaned up)
+    - 'production': Use templates promoted to production (recommended for stability)
+    - 'staging': Use templates in staging
+    - Custom channel name
+
+    Best Practice: Use 'production' channel and only promote images after verifying they exist in vSphere.
+  EOT
+  type        = string
+  default     = "latest"
+}
+
+variable "hcp_packer_iteration_id" {
+  description = <<-EOT
+    (Optional) Lock to a specific HCP Packer iteration instead of using a channel.
+    When set, this takes precedence over hcp_packer_channel.
+    Use this for guaranteed reproducibility or when you want to pin to a specific build.
+
+    Example: "01HQEXAMPLE123456789"
+  EOT
+  type        = string
+  default     = null
+}
+
+variable "fallback_template_name" {
+  description = <<-EOT
+    (Optional) Fallback template name to use if HCP Packer template doesn't exist in vSphere.
+    This provides a safety net when templates are cleaned up from vSphere but still referenced in HCP Packer.
+
+    Example: "base-ubuntu-2204-golden-image"
+
+    Leave null to fail immediately when template is missing (recommended for production).
+  EOT
+  type        = string
+  default     = null
+}
