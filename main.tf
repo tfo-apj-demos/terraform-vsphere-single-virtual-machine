@@ -1,6 +1,6 @@
 module "vm" {
   source  = "app.terraform.io/tfo-apj-demos/virtual-machine/vsphere"
-  version = "2.0.0"
+  version = "2.0.2"
 
   hostname          = var.hostname
 
