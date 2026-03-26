@@ -28,6 +28,7 @@ This wrapper module simplifies VM provisioning with **t-shirt sizing** and **aut
 - 🔗 Automatically fetches latest templates from HCP Packer
 - 🔄 Template updates don't trigger VM replacement (pets behavior)
 - 🏷️ Supports multiple OS types: Ubuntu, RHEL, Windows Server
+- 🛡️ **Template Management:** See [TEMPLATE_MANAGEMENT.md](TEMPLATE_MANAGEMENT.md) for handling missing templates
 
 ## Quick Start
 
