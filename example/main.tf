@@ -3,7 +3,7 @@ terraform {
     organization = "tfo-apj-demos"
     workspaces {
       project = "aaron-dev"
-      name = "my-first-vsphere-vm"
+      name    = "my-first-vsphere-vm"
     }
   }
 }
@@ -11,6 +11,7 @@ module "single-virtual-machine" {
   source  = "app.terraform.io/tfo-apj-demos/single-virtual-machine/vsphere"
   version = "~> 1"
 
+  ad_domain        = "hashicorp.local"
   backup_policy    = "monthly"
   environment      = "dev"
   os_type          = "linux"
@@ -22,5 +23,5 @@ module "single-virtual-machine" {
 }
 
 output "vm_name" {
-    value = module.single-virtual-machine.virtual_machine_name
+  value = module.single-virtual-machine.virtual_machine_name
 }

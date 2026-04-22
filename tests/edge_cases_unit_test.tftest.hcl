@@ -3,27 +3,27 @@
 
 # Global variables for all tests in this file
 variables {
-  os_type          = "linux"
+  os_type            = "linux"
   linux_distribution = "ubuntu"
-  size             = "medium"
-  environment      = "dev"
-  site             = "sydney"
-  storage_profile  = "standard"
-  tier             = "bronze"
-  security_profile = "web-server"
-  backup_policy    = "daily"
-  ad_domain        = "hashicorp.local"
+  size               = "medium"
+  environment        = "dev"
+  site               = "sydney"
+  storage_profile    = "standard"
+  tier               = "bronze"
+  security_profile   = "web-server"
+  backup_policy      = "daily"
+  ad_domain          = "hashicorp.local"
 }
 
 # Mock providers for unit testing (no real infrastructure needed)
 mock_provider "vsphere" {
   mock_data "vsphere_virtual_machine" {
     defaults = {
-      scsi_type            = "pvscsi"
-      guest_id             = "ubuntu64Guest"
-      firmware             = "efi"
-      num_cpus             = 2
-      memory               = 2048
+      scsi_type               = "pvscsi"
+      guest_id                = "ubuntu64Guest"
+      firmware                = "efi"
+      num_cpus                = 2
+      memory                  = 2048
       network_interface_types = ["vmxnet3"]
       disks = [
         {
@@ -178,7 +178,7 @@ run "test_large_disk_size" {
 
   variables {
     hostname    = "test-large-disk-vm"
-    disk_0_size = 2000  # 2 TB
+    disk_0_size = 2000 # 2 TB
   }
 
   assert {
@@ -193,7 +193,7 @@ run "test_minimum_disk_size" {
 
   variables {
     hostname    = "test-min-disk-vm"
-    disk_0_size = 32  # Minimum allowed size (must match or exceed template)
+    disk_0_size = 32 # Minimum allowed size (must match or exceed template)
   }
 
   assert {
@@ -296,7 +296,7 @@ run "test_maximum_configuration" {
   variables {
     hostname         = "test-max-vm"
     os_type          = "windows"
-    size             = "4xlarge"  # Largest size
+    size             = "4xlarge" # Largest size
     environment      = "prod"
     site             = "melbourne"
     storage_profile  = "performance"
@@ -344,16 +344,16 @@ run "test_minimum_configuration" {
   command = plan
 
   variables {
-    hostname         = "test-min-vm"
-    os_type          = "linux"
+    hostname           = "test-min-vm"
+    os_type            = "linux"
     linux_distribution = "ubuntu"
-    size             = "small"  # Smallest size
-    environment      = "dev"
-    site             = "sydney"
-    storage_profile  = "standard"
-    tier             = "bronze"
-    security_profile = "web-server"
-    backup_policy    = "monthly"
+    size               = "small" # Smallest size
+    environment        = "dev"
+    site               = "sydney"
+    storage_profile    = "standard"
+    tier               = "bronze"
+    security_profile   = "web-server"
+    backup_policy      = "monthly"
   }
 
   assert {
@@ -391,22 +391,22 @@ run "test_all_packer_artifacts_defined" {
   }
 
   assert {
-    condition     = data.hcp_packer_artifact.base_ubuntu_2204 != null
+    condition     = data.hcp_packer_artifact.base_ubuntu_2204[0] != null
     error_message = "Ubuntu 22.04 HCP Packer artifact should be defined"
   }
 
   assert {
-    condition     = data.hcp_packer_artifact.base_windows_2022 != null
+    condition     = data.hcp_packer_artifact.base_windows_2022[0] != null
     error_message = "Windows 2022 HCP Packer artifact should be defined"
   }
 
   assert {
-    condition     = data.hcp_packer_artifact.base_rhel_9 != null
+    condition     = data.hcp_packer_artifact.base_rhel_9[0] != null
     error_message = "RHEL 9 HCP Packer artifact should be defined"
   }
 
   assert {
-    condition     = data.hcp_packer_artifact.mssql_windows_2022 != null
+    condition     = data.hcp_packer_artifact.mssql_windows_2022[0] != null
     error_message = "MSSQL Windows 2022 HCP Packer artifact should be defined"
   }
 }

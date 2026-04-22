@@ -4,28 +4,28 @@
 
 # Global variables for all tests in this file
 variables {
-  os_type          = "linux"
+  os_type            = "linux"
   linux_distribution = "ubuntu"
-  hostname         = "test-vm-001"
-  size             = "medium"
-  environment      = "dev"
-  site             = "sydney"
-  storage_profile  = "standard"
-  tier             = "bronze"
-  security_profile = "web-server"
-  backup_policy    = "daily"
-  ad_domain        = "hashicorp.local"
+  hostname           = "test-vm-001"
+  size               = "medium"
+  environment        = "dev"
+  site               = "sydney"
+  storage_profile    = "standard"
+  tier               = "bronze"
+  security_profile   = "web-server"
+  backup_policy      = "daily"
+  ad_domain          = "hashicorp.local"
 }
 
 # Mock providers for unit testing (no real infrastructure needed)
 mock_provider "vsphere" {
   mock_data "vsphere_virtual_machine" {
     defaults = {
-      scsi_type            = "pvscsi"
-      guest_id             = "ubuntu64Guest"
-      firmware             = "efi"
-      num_cpus             = 2
-      memory               = 2048
+      scsi_type               = "pvscsi"
+      guest_id                = "ubuntu64Guest"
+      firmware                = "efi"
+      num_cpus                = 2
+      memory                  = 2048
       network_interface_types = ["vmxnet3"]
       disks = [
         {
@@ -53,7 +53,7 @@ run "test_linux_ubuntu_defaults" {
   }
 
   assert {
-    condition     = local.cloud_image_id == data.hcp_packer_artifact.base_ubuntu_2204.external_identifier
+    condition     = local.cloud_image_id == data.hcp_packer_artifact.base_ubuntu_2204[0].external_identifier
     error_message = "Should select Ubuntu 22.04 image for Linux with Ubuntu distribution"
   }
 

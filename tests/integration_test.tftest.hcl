@@ -21,7 +21,7 @@
 # Global variables for integration tests
 variables {
   hostname         = "tf-test-integration-vm"
-  size             = "small"  # Use smallest size for cost savings
+  size             = "small" # Use smallest size for cost savings
   environment      = "dev"
   site             = "sydney"
   storage_profile  = "standard"
@@ -29,7 +29,7 @@ variables {
   security_profile = "web-server"
   backup_policy    = "daily"
   folder_path      = "Demo Workloads"
-  disk_0_size      = 60  # Minimum disk size
+  disk_0_size      = 60 # Minimum disk size
   custom_text      = "Integration test VM"
   ad_domain        = "hashicorp.local"
 }
