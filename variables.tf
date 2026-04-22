@@ -10,7 +10,7 @@ variable "os_type" {
 variable "linux_distribution" {
   description = "The type of Linux distribution to be provisioned if 'linux' is selected"
   type        = string
-  default     = "ubuntu"  # Defaulting to 'ubuntu' if not provided
+  default     = "ubuntu" # Defaulting to 'ubuntu' if not provided
   validation {
     condition     = var.os_type != "linux" || (var.linux_distribution == "ubuntu" || var.linux_distribution == "rhel")
     error_message = "If 'linux' is selected, 'linux_distribution' must be either 'ubuntu' or 'rhel'."

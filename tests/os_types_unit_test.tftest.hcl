@@ -19,11 +19,11 @@ variables {
 mock_provider "vsphere" {
   mock_data "vsphere_virtual_machine" {
     defaults = {
-      scsi_type            = "pvscsi"
-      guest_id             = "ubuntu64Guest"
-      firmware             = "efi"
-      num_cpus             = 2
-      memory               = 2048
+      scsi_type               = "pvscsi"
+      guest_id                = "ubuntu64Guest"
+      firmware                = "efi"
+      num_cpus                = 2
+      memory                  = 2048
       network_interface_types = ["vmxnet3"]
       disks = [
         {
@@ -65,22 +65,22 @@ run "test_linux_ubuntu_image_selection" {
   }
 
   assert {
-    condition     = local.cloud_image_id == data.hcp_packer_artifact.base_ubuntu_2204.external_identifier
+    condition     = local.cloud_image_id == data.hcp_packer_artifact.base_ubuntu_2204[0].external_identifier
     error_message = "Should select Ubuntu 22.04 HCP Packer image"
   }
 
   assert {
-    condition     = data.hcp_packer_artifact.base_ubuntu_2204.bucket_name == "base-ubuntu-2204"
+    condition     = data.hcp_packer_artifact.base_ubuntu_2204[0].bucket_name == "base-ubuntu-2204"
     error_message = "Should use base-ubuntu-2204 bucket"
   }
 
   assert {
-    condition     = data.hcp_packer_artifact.base_ubuntu_2204.channel_name == "latest"
+    condition     = data.hcp_packer_artifact.base_ubuntu_2204[0].channel_name == "latest"
     error_message = "Should use latest channel"
   }
 
   assert {
-    condition     = data.hcp_packer_artifact.base_ubuntu_2204.platform == "vsphere"
+    condition     = data.hcp_packer_artifact.base_ubuntu_2204[0].platform == "vsphere"
     error_message = "Should use vsphere platform"
   }
 }
@@ -106,17 +106,17 @@ run "test_linux_ubuntu_image_selection" {
 #   }
 #
 #   assert {
-#     condition     = local.cloud_image_id == data.hcp_packer_artifact.base_rhel_9.external_identifier
+#     condition     = local.cloud_image_id == data.hcp_packer_artifact.base_rhel_9[0].external_identifier
 #     error_message = "Should select RHEL 9 HCP Packer image"
 #   }
 #
 #   assert {
-#     condition     = data.hcp_packer_artifact.base_rhel_9.bucket_name == "base-rhel-9"
+#     condition     = data.hcp_packer_artifact.base_rhel_9[0].bucket_name == "base-rhel-9"
 #     error_message = "Should use base-rhel-9 bucket"
 #   }
 #
 #   assert {
-#     condition     = data.hcp_packer_artifact.base_rhel_9.channel_name == "latest"
+#     condition     = data.hcp_packer_artifact.base_rhel_9[0].channel_name == "latest"
 #     error_message = "Should use latest channel"
 #   }
 # }
@@ -135,7 +135,7 @@ run "test_linux_default_distribution" {
   }
 
   assert {
-    condition     = local.cloud_image_id == data.hcp_packer_artifact.base_ubuntu_2204.external_identifier
+    condition     = local.cloud_image_id == data.hcp_packer_artifact.base_ubuntu_2204[0].external_identifier
     error_message = "Should select Ubuntu image when distribution not specified"
   }
 }
@@ -158,17 +158,17 @@ run "test_windows_image_selection" {
   }
 
   assert {
-    condition     = local.cloud_image_id == data.hcp_packer_artifact.base_windows_2022.external_identifier
+    condition     = local.cloud_image_id == data.hcp_packer_artifact.base_windows_2022[0].external_identifier
     error_message = "Should select Windows 2022 HCP Packer image"
   }
 
   assert {
-    condition     = data.hcp_packer_artifact.base_windows_2022.bucket_name == "base-windows-2022"
+    condition     = data.hcp_packer_artifact.base_windows_2022[0].bucket_name == "base-windows-2022"
     error_message = "Should use base-windows-2022 bucket"
   }
 
   assert {
-    condition     = data.hcp_packer_artifact.base_windows_2022.channel_name == "latest"
+    condition     = data.hcp_packer_artifact.base_windows_2022[0].channel_name == "latest"
     error_message = "Should use latest channel"
   }
 }
@@ -179,7 +179,7 @@ run "test_windows_ignores_linux_distribution" {
 
   variables {
     os_type            = "windows"
-    linux_distribution = "ubuntu"  # Should be ignored
+    linux_distribution = "ubuntu" # Should be ignored
   }
 
   assert {
@@ -188,7 +188,7 @@ run "test_windows_ignores_linux_distribution" {
   }
 
   assert {
-    condition     = local.cloud_image_id == data.hcp_packer_artifact.base_windows_2022.external_identifier
+    condition     = local.cloud_image_id == data.hcp_packer_artifact.base_windows_2022[0].external_identifier
     error_message = "Should select Windows image regardless of linux_distribution"
   }
 }
@@ -211,17 +211,17 @@ run "test_mssql_image_selection" {
   }
 
   assert {
-    condition     = local.cloud_image_id == data.hcp_packer_artifact.mssql_windows_2022.external_identifier
+    condition     = local.cloud_image_id == data.hcp_packer_artifact.mssql_windows_2022[0].external_identifier
     error_message = "Should select MSSQL Windows 2022 HCP Packer image"
   }
 
   assert {
-    condition     = data.hcp_packer_artifact.mssql_windows_2022.bucket_name == "mssql-windows-2022"
+    condition     = data.hcp_packer_artifact.mssql_windows_2022[0].bucket_name == "mssql-windows-2022"
     error_message = "Should use mssql-windows-2022 bucket"
   }
 
   assert {
-    condition     = data.hcp_packer_artifact.mssql_windows_2022.channel_name == "latest"
+    condition     = data.hcp_packer_artifact.mssql_windows_2022[0].channel_name == "latest"
     error_message = "Should use latest channel"
   }
 }
@@ -316,42 +316,42 @@ run "test_hcp_packer_data_sources" {
   }
 
   assert {
-    condition     = data.hcp_packer_artifact.base_ubuntu_2204.platform == "vsphere"
+    condition     = data.hcp_packer_artifact.base_ubuntu_2204[0].platform == "vsphere"
     error_message = "Ubuntu artifact should use vsphere platform"
   }
 
   assert {
-    condition     = data.hcp_packer_artifact.base_ubuntu_2204.region == "Datacenter"
+    condition     = data.hcp_packer_artifact.base_ubuntu_2204[0].region == "Datacenter"
     error_message = "Ubuntu artifact should use Datacenter region"
   }
 
   assert {
-    condition     = data.hcp_packer_artifact.base_windows_2022.platform == "vsphere"
+    condition     = data.hcp_packer_artifact.base_windows_2022[0].platform == "vsphere"
     error_message = "Windows artifact should use vsphere platform"
   }
 
   assert {
-    condition     = data.hcp_packer_artifact.base_windows_2022.region == "Datacenter"
+    condition     = data.hcp_packer_artifact.base_windows_2022[0].region == "Datacenter"
     error_message = "Windows artifact should use Datacenter region"
   }
 
   assert {
-    condition     = data.hcp_packer_artifact.base_rhel_9.platform == "vsphere"
+    condition     = data.hcp_packer_artifact.base_rhel_9[0].platform == "vsphere"
     error_message = "RHEL artifact should use vsphere platform"
   }
 
   assert {
-    condition     = data.hcp_packer_artifact.base_rhel_9.region == "Datacenter"
+    condition     = data.hcp_packer_artifact.base_rhel_9[0].region == "Datacenter"
     error_message = "RHEL artifact should use Datacenter region"
   }
 
   assert {
-    condition     = data.hcp_packer_artifact.mssql_windows_2022.platform == "vsphere"
+    condition     = data.hcp_packer_artifact.mssql_windows_2022[0].platform == "vsphere"
     error_message = "MSSQL artifact should use vsphere platform"
   }
 
   assert {
-    condition     = data.hcp_packer_artifact.mssql_windows_2022.region == "Datacenter"
+    condition     = data.hcp_packer_artifact.mssql_windows_2022[0].region == "Datacenter"
     error_message = "MSSQL artifact should use Datacenter region"
   }
 }

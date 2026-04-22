@@ -4,28 +4,28 @@
 
 # Global variables for all tests in this file (valid defaults)
 variables {
-  os_type          = "linux"
+  os_type            = "linux"
   linux_distribution = "ubuntu"
-  hostname         = "test-vm-validation"
-  size             = "medium"
-  environment      = "dev"
-  site             = "sydney"
-  storage_profile  = "standard"
-  tier             = "bronze"
-  security_profile = "web-server"
-  backup_policy    = "daily"
-  ad_domain        = "hashicorp.local"
+  hostname           = "test-vm-validation"
+  size               = "medium"
+  environment        = "dev"
+  site               = "sydney"
+  storage_profile    = "standard"
+  tier               = "bronze"
+  security_profile   = "web-server"
+  backup_policy      = "daily"
+  ad_domain          = "hashicorp.local"
 }
 
 # Mock providers for unit testing (no real infrastructure needed)
 mock_provider "vsphere" {
   mock_data "vsphere_virtual_machine" {
     defaults = {
-      scsi_type            = "pvscsi"
-      guest_id             = "ubuntu64Guest"
-      firmware             = "efi"
-      num_cpus             = 2
-      memory               = 2048
+      scsi_type               = "pvscsi"
+      guest_id                = "ubuntu64Guest"
+      firmware                = "efi"
+      num_cpus                = 2
+      memory                  = 2048
       network_interface_types = ["vmxnet3"]
       disks = [
         {
@@ -98,7 +98,7 @@ run "test_invalid_linux_distribution" {
 
   variables {
     os_type            = "linux"
-    linux_distribution = "centos"  # Not in allowed list
+    linux_distribution = "centos" # Not in allowed list
   }
 
   expect_failures = [
@@ -128,7 +128,7 @@ run "test_linux_distribution_ignored_for_windows" {
 
   variables {
     os_type            = "windows"
-    linux_distribution = "ubuntu"  # Should be ignored
+    linux_distribution = "ubuntu" # Should be ignored
   }
 
   assert {
@@ -146,7 +146,7 @@ run "test_invalid_size" {
   command = plan
 
   variables {
-    size = "mega"  # Not in allowed list
+    size = "mega" # Not in allowed list
   }
 
   expect_failures = [
@@ -263,7 +263,7 @@ run "test_invalid_environment" {
   command = plan
 
   variables {
-    environment = "staging"  # Not in allowed list
+    environment = "staging" # Not in allowed list
   }
 
   expect_failures = [
@@ -308,7 +308,7 @@ run "test_invalid_site" {
   command = plan
 
   variables {
-    site = "perth"  # Not in allowed list
+    site = "perth" # Not in allowed list
   }
 
   expect_failures = [
@@ -353,7 +353,7 @@ run "test_invalid_storage_profile" {
   command = plan
 
   variables {
-    storage_profile = "ultra"  # Not in allowed list
+    storage_profile = "ultra" # Not in allowed list
   }
 
   expect_failures = [
@@ -398,7 +398,7 @@ run "test_invalid_tier" {
   command = plan
 
   variables {
-    tier = "platinum"  # Not in allowed list
+    tier = "platinum" # Not in allowed list
   }
 
   expect_failures = [
@@ -457,7 +457,7 @@ run "test_invalid_security_profile" {
   command = plan
 
   variables {
-    security_profile = "firewall"  # Not in allowed list
+    security_profile = "firewall" # Not in allowed list
   }
 
   expect_failures = [
@@ -502,7 +502,7 @@ run "test_invalid_backup_policy" {
   command = plan
 
   variables {
-    backup_policy = "hourly"  # Not in allowed list
+    backup_policy = "hourly" # Not in allowed list
   }
 
   expect_failures = [

@@ -70,7 +70,7 @@ locals {
     channel     = "N/A (using fallback template)"
     iteration   = "N/A (using fallback template)"
     template_id = var.fallback_template_name
-  } : (
+    } : (
     var.os_type == "windows" ? {
       bucket      = data.hcp_packer_artifact.base_windows_2022[0].bucket_name
       channel     = data.hcp_packer_artifact.base_windows_2022[0].channel_name
@@ -102,10 +102,10 @@ locals {
 
   // T-shirt size mappings for CPU and memory
   sizes = {
-    "small"  = { cpu = 1, memory = 1024 }
-    "medium" = { cpu = 2, memory = 2048 }
-    "large"  = { cpu = 4, memory = 4096 }
-    "xlarge" = { cpu = 8, memory = 8192 }
+    "small"   = { cpu = 1, memory = 1024 }
+    "medium"  = { cpu = 2, memory = 2048 }
+    "large"   = { cpu = 4, memory = 4096 }
+    "xlarge"  = { cpu = 8, memory = 8192 }
     "2xlarge" = { cpu = 16, memory = 16384 }
     "4xlarge" = { cpu = 32, memory = 32768 }
   }
@@ -126,9 +126,9 @@ locals {
 
   // Tier to resource pool mappings
   tiers = {
-    "gold"   = "Demo Workloads"
-    "silver" = "Demo Workloads"
-    "bronze" = "Demo Workloads"
+    "gold"       = "Demo Workloads"
+    "silver"     = "Demo Workloads"
+    "bronze"     = "Demo Workloads"
     "management" = "Demo Management"
   }
 

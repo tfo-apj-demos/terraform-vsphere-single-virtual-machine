@@ -323,3 +323,75 @@ For issues or questions:
 ---
 
 **Remember:** This is the **CATTLE version (v2.0.0)** - VMs will be replaced when templates change. Use **v1.6.0** for pets behavior (protection from template changes).
+
+<!-- BEGIN_TF_DOCS -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_ad"></a> [ad](#requirement\_ad) | ~> 0.5 |
+| <a name="requirement_dns"></a> [dns](#requirement\_dns) | ~> 3.3 |
+| <a name="requirement_hcp"></a> [hcp](#requirement\_hcp) | ~> 0.104 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.0 |
+| <a name="requirement_vsphere"></a> [vsphere](#requirement\_vsphere) | ~> 2 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_ad"></a> [ad](#provider\_ad) | 0.5.0 |
+| <a name="provider_hcp"></a> [hcp](#provider\_hcp) | 0.111.0 |
+
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_domain-name-system-management"></a> [domain-name-system-management](#module\_domain-name-system-management) | app.terraform.io/tfo-apj-demos/domain-name-system-management/dns | ~> 1.0 |
+| <a name="module_vm"></a> [vm](#module\_vm) | app.terraform.io/tfo-apj-demos/virtual-machine/vsphere | 2.0.2 |
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [ad_computer.windows_computer](https://registry.terraform.io/providers/hashicorp/ad/latest/docs/resources/computer) | resource |
+| [hcp_packer_artifact.base_rhel_9](https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/data-sources/packer_artifact) | data source |
+| [hcp_packer_artifact.base_ubuntu_2204](https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/data-sources/packer_artifact) | data source |
+| [hcp_packer_artifact.base_windows_2022](https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/data-sources/packer_artifact) | data source |
+| [hcp_packer_artifact.mssql_windows_2022](https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/data-sources/packer_artifact) | data source |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_ad_domain"></a> [ad\_domain](#input\_ad\_domain) | n/a | `string` | n/a | yes |
+| <a name="input_admin_password"></a> [admin\_password](#input\_admin\_password) | n/a | `string` | `""` | no |
+| <a name="input_backup_policy"></a> [backup\_policy](#input\_backup\_policy) | The backup policy for the VM (e.g., daily, weekly, monthly) | `string` | n/a | yes |
+| <a name="input_custom_text"></a> [custom\_text](#input\_custom\_text) | Custom text to be rendered in userdata. | `string` | `"some text to be rendered"` | no |
+| <a name="input_disk_0_size"></a> [disk\_0\_size](#input\_disk\_0\_size) | n/a | `number` | `60` | no |
+| <a name="input_domain_admin_password"></a> [domain\_admin\_password](#input\_domain\_admin\_password) | n/a | `string` | `""` | no |
+| <a name="input_domain_admin_user"></a> [domain\_admin\_user](#input\_domain\_admin\_user) | n/a | `string` | `""` | no |
+| <a name="input_environment"></a> [environment](#input\_environment) | The environment of the VM (e.g., dev, test, prod) | `string` | n/a | yes |
+| <a name="input_fallback_template_name"></a> [fallback\_template\_name](#input\_fallback\_template\_name) | (Optional) Fallback template name to use if HCP Packer template doesn't exist in vSphere.<br/>This provides a safety net when templates are cleaned up from vSphere but still referenced in HCP Packer.<br/><br/>Example: "base-ubuntu-2204-golden-image"<br/><br/>Leave null to fail immediately when template is missing (recommended for production). | `string` | `null` | no |
+| <a name="input_folder_path"></a> [folder\_path](#input\_folder\_path) | The path to the VM folder where the virtual machine will be created. | `string` | `"Demo Workloads"` | no |
+| <a name="input_hcp_packer_channel"></a> [hcp\_packer\_channel](#input\_hcp\_packer\_channel) | HCP Packer channel to use for template selection.<br/><br/>Options:<br/>- 'latest': Always use the most recent build (default, but risky if templates are cleaned up)<br/>- 'production': Use templates promoted to production (recommended for stability)<br/>- 'staging': Use templates in staging<br/>- Custom channel name<br/><br/>Best Practice: Use 'production' channel and only promote images after verifying they exist in vSphere. | `string` | `"latest"` | no |
+| <a name="input_hcp_packer_iteration_id"></a> [hcp\_packer\_iteration\_id](#input\_hcp\_packer\_iteration\_id) | (Optional) Lock to a specific HCP Packer iteration instead of using a channel.<br/>When set, this takes precedence over hcp\_packer\_channel.<br/>Use this for guaranteed reproducibility or when you want to pin to a specific build.<br/><br/>Example: "01HQEXAMPLE123456789" | `string` | `null` | no |
+| <a name="input_hostname"></a> [hostname](#input\_hostname) | The hostname of the VM being provisioned. If left blank a hostname will be generated. | `string` | `null` | no |
+| <a name="input_linux_distribution"></a> [linux\_distribution](#input\_linux\_distribution) | The type of Linux distribution to be provisioned if 'linux' is selected | `string` | `"ubuntu"` | no |
+| <a name="input_os_type"></a> [os\_type](#input\_os\_type) | The type of operating system to be provisioned | `string` | n/a | yes |
+| <a name="input_security_profile"></a> [security\_profile](#input\_security\_profile) | The security profile for the VM (e.g., web-server, db-server) | `string` | n/a | yes |
+| <a name="input_site"></a> [site](#input\_site) | The site or datacenter location for the VM (e.g., sydney, canberra, melbourne) | `string` | n/a | yes |
+| <a name="input_size"></a> [size](#input\_size) | T-shirt size for the VM (e.g., small, medium, large) | `string` | n/a | yes |
+| <a name="input_storage_profile"></a> [storage\_profile](#input\_storage\_profile) | The storage profile for the VM (e.g., performance, capacity, standard) | `string` | n/a | yes |
+| <a name="input_tier"></a> [tier](#input\_tier) | The resource tier for the VM (e.g., gold, silver, bronze, management) | `string` | n/a | yes |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| <a name="output_ip_address"></a> [ip\_address](#output\_ip\_address) | The default IP address of the virtual machine. |
+| <a name="output_template_metadata"></a> [template\_metadata](#output\_template\_metadata) | Metadata about the VM template being used (HCP Packer or fallback). |
+| <a name="output_template_name"></a> [template\_name](#output\_template\_name) | The name of the VM template being used. |
+| <a name="output_virtual_machine_id"></a> [virtual\_machine\_id](#output\_virtual\_machine\_id) | The ID of the virtual machine. |
+| <a name="output_virtual_machine_name"></a> [virtual\_machine\_name](#output\_virtual\_machine\_name) | The name of the virtual machine. |
+| <a name="output_vsphere_compute_cluster_id"></a> [vsphere\_compute\_cluster\_id](#output\_vsphere\_compute\_cluster\_id) | The ID of the vSphere compute cluster where the VM is deployed. |
+<!-- END_TF_DOCS -->
